@@ -2,7 +2,7 @@
 
 # 🏥 Hospital Appointment System
 
-### A Python-based hospital appointment management system with scheduling, CSV persistence, analytics, and data visualization.
+A Python command-line application for managing patients and hospital appointments with scheduling validation, CSV persistence, analytics, and visualization.
 
 ![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458?style=for-the-badge&logo=pandas&logoColor=white)
@@ -14,111 +14,165 @@
 
 ---
 
-## 📌 Overview
+## Overview
 
-**Hospital Appointment System** is a command-line application built in Python to manage patients and hospital appointments efficiently.
+**Hospital Appointment System** is a modular Python project that simulates the day-to-day workflow of a small hospital appointment desk.
 
-The project combines **Object-Oriented Programming**, **file handling**, **input validation**, **data analysis**, and **data visualization** in one complete workflow. It allows hospital staff to register patients, schedule and manage appointments, inspect doctors' schedules, analyze appointment activity, and display visual dashboards.
+The application can register patients, create and manage appointments, validate scheduling rules, inspect doctor schedules, save data to CSV files, calculate operational statistics, and display appointment charts.
 
----
+The project was built to practice practical Python concepts rather than only basic CRUD operations. It combines:
 
-## ✨ Features
-
-### 👤 Patient Management
-- Register new patients.
-- Automatically generate unique patient IDs.
-- Validate patient age input.
-- Store patient information persistently in a CSV file.
-
-### 📅 Appointment Management
-- Book appointments for registered patients.
-- Automatically generate unique appointment IDs.
-- Search appointments by ID.
-- Display all appointments.
-- Reschedule existing appointments.
-- Cancel appointments.
-- Mark appointments as completed.
-- Track appointment status as **Booked**, **Completed**, or **Cancelled**.
-
-### 🕒 Smart Scheduling & Validation
-- Prevent appointments from being created in the past.
-- Restrict appointment times to hospital working hours: **09:00 AM – 10:00 PM**.
-- Prevent booking a time that has already passed when scheduling for the current day.
-- Detect doctor scheduling conflicts.
-- Enforce a minimum **30-minute gap** between appointments for the same doctor.
-
-### 👨‍⚕️ Doctor Schedule
-- Search a doctor's schedule by name and date.
-- Display patient IDs, appointment times, and appointment statuses for the selected day.
-
-### 📊 Data Analysis
-The system can generate useful operational insights including:
-- Average patient age.
-- Average number of appointments per day.
-- Maximum appointments recorded on a single day.
-- Identification of the busiest appointment day(s).
-- Appointment completion percentage.
-- Appointment cancellation percentage.
-- Chronologically sorted upcoming booked appointments.
-- Combined patient and appointment information using data merging.
-
-### 📈 Visualization Dashboard
-The project includes a Matplotlib dashboard containing:
-- Appointments per doctor.
-- Appointments per day.
-- Appointment status distribution.
-- Appointment demand by department.
+- Object-oriented programming
+- File persistence
+- Date and time validation
+- Scheduling conflict detection
+- Data analysis
+- Data visualization
+- Modular project structure
 
 ---
 
-## 🧠 Concepts Demonstrated
+## Main Features
 
-This project demonstrates practical use of:
+### Patient Management
 
-- Object-Oriented Programming (OOP)
-- Classes and encapsulation
-- Modular Python programming
-- CSV file handling
-- Exception handling
-- Input validation
-- Date and time processing
-- Conflict detection algorithms
-- Data manipulation with Pandas
-- Numerical analysis with NumPy
-- Data visualization with Matplotlib
-- Grouping, filtering, sorting, and merging datasets
+- Register a new patient
+- Generate patient IDs automatically
+- Validate age input
+- Save patient data immediately to CSV
+- Load saved patient records when the application starts
+
+### Appointment Management
+
+- Book an appointment for an existing patient
+- Generate appointment IDs automatically
+- Display all appointments
+- Search by appointment ID
+- Reschedule booked appointments
+- Cancel appointments
+- Mark appointments as completed
+- Track appointment states:
+  - `Booked`
+  - `Completed`
+  - `Cancelled`
+
+### Scheduling Validation
+
+Appointments are validated before being accepted.
+
+The system:
+
+- Rejects dates in the past
+- Restricts appointment times to **09:00 AM – 10:00 PM**
+- Rejects times that have already passed when booking for today
+- Detects conflicts for the same doctor
+- Requires at least a **30-minute gap** between the same doctor's active appointments
+- Re-checks doctor conflicts when an appointment is rescheduled
+
+### Doctor Schedule
+
+A doctor schedule can be displayed for a selected date, including:
+
+- Appointment time
+- Patient ID
+- Appointment status
+
+### Analytics
+
+The analytics module uses Pandas and NumPy to report:
+
+- Average patient age
+- Average appointments per day
+- Maximum appointments recorded on one day
+- Busiest appointment day(s)
+- Completion percentage
+- Cancellation percentage
+- Upcoming booked appointments sorted by date and time
+- Merged patient and appointment information
+
+### Visualization Dashboard
+
+Matplotlib is used to display four charts:
+
+- Appointments per doctor
+- Appointments per day
+- Appointment status distribution
+- Department demand
 
 ---
 
-## 🛠️ Technologies Used
-
-| Technology | Purpose |
-|---|---|
-| **Python** | Core application logic |
-| **CSV** | Persistent patient and appointment storage |
-| **Pandas** | Data processing and analysis |
-| **NumPy** | Statistical calculations |
-| **Matplotlib** | Charts and visualization dashboard |
-| **datetime** | Date/time validation and scheduling |
-
----
-
-## 📁 Project Structure
+## Application Flow
 
 ```text
-Hospital-Appointment-System/
-│
-├── main.py               # Main CLI menu and application entry point
-├── operations.py         # Patient and appointment classes + core operations
-├── analysis.py           # Statistical analysis and reporting
-├── visualization.py      # Appointment visualization dashboard
-├── patients.csv          # Stored patient records
-└── appointments.csv      # Stored appointment records
+Start Application
+      │
+      ▼
+Load Patients & Appointments
+      │
+      ▼
+   Main Menu
+      │
+ ┌────┼───────────────────────────────┐
+ ▼    ▼        ▼        ▼             ▼
+Add  Book    Search   Update       Analyze
+Patient Appointment Appointment Appointment Data
+      │
+      ▼
+Validate Date / Time
+      │
+      ▼
+Check Doctor Conflict
+      │
+      ▼
+Save to CSV
 ```
 
 ---
 
-## ⚙️ Installation
+## Project Structure
+
+```text
+Hospital-Appointment-System/
+├── main.py
+├── operations.py
+├── analysis.py
+├── visualization.py
+├── patients.csv
+├── appointments.csv
+├── requirements.txt
+├── .gitignore
+└── README.md
+```
+
+### File Responsibilities
+
+| File | Responsibility |
+| --- | --- |
+| `main.py` | CLI menu and application entry point |
+| `operations.py` | Patient/appointment models, scheduling rules, CRUD operations, CSV persistence |
+| `analysis.py` | Statistical analysis and operational reports |
+| `visualization.py` | Matplotlib appointment dashboard |
+| `patients.csv` | Demo patient records |
+| `appointments.csv` | Demo appointment records |
+| `requirements.txt` | Python dependencies |
+
+---
+
+## Tech Stack
+
+| Technology | Usage |
+| --- | --- |
+| **Python** | Main application logic |
+| **CSV** | Lightweight persistent storage |
+| **Pandas** | Data loading, grouping, filtering, merging and sorting |
+| **NumPy** | Statistical calculations |
+| **Matplotlib** | Data visualization |
+| **datetime** | Date/time parsing and scheduling validation |
+| **pathlib** | Reliable project-relative file paths |
+
+---
+
+## Installation
 
 ### 1. Clone the repository
 
@@ -127,25 +181,41 @@ git clone https://github.com/R3Dzf/Hospital-Appointment-System.git
 cd Hospital-Appointment-System
 ```
 
-### 2. Install the required Python packages
+### 2. Create a virtual environment
 
 ```bash
-pip install pandas numpy matplotlib
+python -m venv .venv
 ```
 
-> Recommended: **Python 3.12 or newer**.
+Windows:
 
----
+```bash
+.venv\Scripts\activate
+```
 
-## ▶️ Run the Application
+Linux / macOS:
 
-Start the program with:
+```bash
+source .venv/bin/activate
+```
+
+### 3. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Run the application
 
 ```bash
 python main.py
 ```
 
-You will be presented with the main menu:
+---
+
+## Main Menu
+
+When the program starts, the following menu is displayed:
 
 ```text
 ------------------ Welcome to Hospital Appointment System Menu ------------------
@@ -165,79 +235,114 @@ You will be presented with the main menu:
 
 ---
 
-## 🔄 Example Workflow
+## Example Booking Workflow
 
 ```text
-Add Patient
-    ↓
-Generate Patient ID
-    ↓
-Book Appointment
-    ↓
-Validate Date & Time
-    ↓
-Check Doctor Availability
-    ↓
-Save Appointment to CSV
-    ↓
-Manage / Analyze / Visualize Appointment Data
+Enter Patient ID
+      │
+      ▼
+Verify Patient Exists
+      │
+      ▼
+Enter Doctor & Department
+      │
+      ▼
+Choose Future Date
+      │
+      ▼
+Choose Time Within Working Hours
+      │
+      ▼
+Check 30-Minute Doctor Gap
+      │
+      ├── Conflict → Reject
+      │
+      └── Available
+             │
+             ▼
+      Create Appointment
+             │
+             ▼
+        Save to CSV
 ```
 
 ---
 
-## 💾 Data Storage
+## Data Storage
 
-The application uses two CSV files as lightweight persistent storage:
+The project deliberately uses CSV files to keep the storage layer simple and easy to inspect.
 
 ### `patients.csv`
 
 ```text
-ID, Name, Age, Phone
+ID,Name,Age,Phone
 ```
 
 ### `appointments.csv`
 
 ```text
-Appointment_ID, Patient_ID, Doctor, Department, Date, Time, Status
+Appointment_ID,Patient_ID,Doctor,Department,Date,Time,Status
 ```
 
-Data is loaded automatically when the system starts and saved whenever records are modified.
+The repository includes sample records so the analysis and visualization features can be tested immediately.
+
+> The bundled CSV content is demonstration data for the project, not a real hospital database.
 
 ---
 
-## 📊 Analytics Dashboard
+## Engineering Concepts Demonstrated
 
-The visualization module transforms appointment data into an easy-to-understand dashboard, helping identify:
+This project demonstrates hands-on use of:
 
-- Doctor workload.
-- Daily appointment volume.
-- Appointment completion/cancellation distribution.
-- Departments receiving the highest demand.
-
-This adds a basic **data-driven decision support layer** to the appointment management system instead of limiting the project to CRUD operations only.
-
----
-
-## 🚀 Possible Future Improvements
-
-- Graphical desktop or web interface.
-- SQLite / PostgreSQL database integration.
-- Authentication and role-based access for admins, doctors, and receptionists.
-- Doctor and department management modules.
-- Appointment reminders via email or SMS.
-- Patient medical history records.
-- REST API integration.
-- Advanced reporting and filtering.
-- Export reports to PDF or Excel.
+- Classes and encapsulation
+- Object-oriented design
+- Modular Python code
+- Persistent file storage
+- Defensive input validation
+- Exception handling
+- Date/time processing
+- Scheduling conflict detection
+- Collection searching and filtering
+- Pandas grouping and merging
+- Statistical analysis with NumPy
+- Visualization with Matplotlib
 
 ---
 
-## 👨‍💻 Author
+## Recent Code Improvements
 
-**Ahmed Youssef**
+The project has also been cleaned up to make the repository easier to run and maintain:
 
-Computer & Control Engineering Student  
-Interested in Software Development, Automation, and Artificial Intelligence.
+- Fixed the analytics module so it runs correctly
+- Added a proper `__main__` entry-point guard
+- Added project-relative file paths
+- Added doctor-conflict validation when rescheduling
+- Made chart status handling work with any number of appointment statuses
+- Added `requirements.txt`
+- Added a Python `.gitignore`
+- Improved naming, output messages, formatting and code organization
+
+---
+
+## Possible Future Improvements
+
+- Replace CSV storage with SQLite or PostgreSQL
+- Add a graphical desktop interface
+- Build a Flask/FastAPI web version
+- Add staff authentication and role-based access
+- Add dedicated doctor management
+- Add patient medical-history records
+- Add appointment reminders
+- Add advanced search and filtering
+- Export reports to PDF or Excel
+- Add automated tests
+
+---
+
+## Author
+
+**Ahmed Youssef Bosha**  
+Computer & Control Engineering Student — Tanta University
 
 GitHub: [@R3Dzf](https://github.com/R3Dzf)
 
@@ -245,6 +350,6 @@ GitHub: [@R3Dzf](https://github.com/R3Dzf)
 
 <div align="center">
 
-### ⭐ If you find this project useful, consider giving the repository a star!
+Built as a practical Python project combining OOP, scheduling logic, persistence, analytics, and visualization.
 
 </div>
