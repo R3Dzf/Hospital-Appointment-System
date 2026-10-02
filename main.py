@@ -8,6 +8,7 @@ plt.style.use('Solarize_Light2')
 
 hospital = op.HospitalSystem()
 
+
 def showmenu():
 
     while True:
@@ -74,4 +75,5 @@ def showmenu():
         input('Press Enter to Continue......')    
     
 
-showmenu()
+if __name__ == "__main__":
+    showmenu()
