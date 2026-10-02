@@ -99,6 +99,10 @@ Matplotlib is used to display four charts:
 - Appointment status distribution
 - Department demand
 
+<p align="center">
+  <img src="assets/hospital-dashboard.webp" alt="Hospital Appointments Dashboard" width="900">
+</p>
+
 ---
 
 ## Application Flow
